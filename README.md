@@ -1,5 +1,5 @@
 # SPARK_BACKUP
-### SPARK ORC SCD 2
+### SPARK PARQUET SCD 2
 
 ```python
 from pyspark.sql import SparkSession, functions as F
