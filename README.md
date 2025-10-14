@@ -118,11 +118,12 @@ final_df.write \
 from pyspark.sql import SparkSession
 
 # --------------------------
-# 1️⃣ Spark session with Hive support
+# 1️⃣ Spark session with external Hive metastore
 # --------------------------
 spark = SparkSession.builder \
     .appName("SCD2_Hive_ORC_SQL") \
     .config("spark.sql.warehouse.dir", "/warehouse/external/") \
+    .config("hive.metastore.uris", "thrift://hive-metastore-host:9083") \  # External Hive metastore URL
     .enableHiveSupport() \
     .getOrCreate()
 
@@ -196,4 +197,5 @@ WHERE tgt.id IS NULL OR src.name <> tgt.name
 # 6️⃣ Done
 # --------------------------
 print("SCD Type 2 load to External Hive ORC using Spark SQL completed ✅")
+
 ```
